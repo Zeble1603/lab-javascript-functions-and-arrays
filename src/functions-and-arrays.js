@@ -1,24 +1,56 @@
 // Iteration #1: Find the maximum
-function maxOfTwoNumbers() {}
+function maxOfTwoNumbers(num1, num2) {
+  return Math.max(num1,num2)
+}
 
 
 
 // Iteration #2: Find longest word
 const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard', 'crackpot'];
 
-function findLongestWord() {}
+function findLongestWord(words) {
+  let solution = words[0]
+  if (words.length === 0){
+    return null
+  }else{for (const word of words){
+    if (word.length > solution.length){
+      solution = word
+    } 
+  }
+  return solution}
+}
 
 
 
 // Iteration #3: Calculate the sum
 const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 
-function sumNumbers() {}
+function sumNumbers(numbers) {
+  let solution = 0
+  for (number of numbers){
+    solution += number
+  }
+  return solution
+}
 
 
 
 // Iteration #3.1 Bonus:
-function sum() {}
+function sum(array) {
+  let solution = 0
+  for (element of array){
+    switch (typeof element) {
+      case "string":
+        solution += element.length
+        break;  
+      case "object" || "array":
+        throw "Unsupported data type sir or ma'am"
+      default:
+        solution += element
+    }
+  }
+  return solution
+}
 
 
 
@@ -26,16 +58,56 @@ function sum() {}
 // Level 1: Array of numbers
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
-function averageNumbers() {}
+function averageNumbers(numbersAvg) {
+  if (numbersAvg.length > 0){
+    let sum = 0
+    for (const number of numbersAvg){
+      sum += number
+    }
+    result = sum / numbersAvg.length
+    return result
+  }else{
+    return null
+  }
+}
 
 
 // Level 2: Array of strings
 const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smart', 'chaos', 'fuel', 'palace'];
 
-function averageWordLength() { }
+function averageWordLength(wordsArr) { 
+  if (wordsArr.length > 0){
+    let sum = 0
+    for (const word of wordsArr){
+      sum += word.length
+    }
+    result = sum / wordsArr.length
+    return result
+  }else{
+    return null
+  }
+}
 
 // Bonus - Iteration #4.1
-function avg() {}
+function avg(array) {
+  let sum = 0
+  let solution = null
+  if (array.length > 0){
+    for (element of array){
+      switch (typeof element) {
+        case "string":
+          sum += element.length
+          break;  
+        case "object" || "array":
+          throw "Unsupported data type sir or ma'am"
+        default:
+          sum += element
+      }
+    }
+    solution = Math.round(sum / array.length*100)/100
+  }
+  return solution
+}
 
 // Iteration #5: Unique arrays
 const wordsUnique = [
@@ -52,15 +124,22 @@ const wordsUnique = [
   'bring'
 ];
 
-function uniquifyArray() {}
-
-
+function uniquifyArray(wordsUnique) {
+  if (wordsUnique.length > 0){
+    return [... new Set(wordsUnique)]
+  }
+  return null
+}
 
 // Iteration #6: Find elements
 const wordsFind = ['machine', 'subset', 'trouble', 'starting', 'matter', 'eating', 'truth', 'disobedience'];
 
-function doesWordExist() {}
-
+function doesWordExist(wordsFind,word) {
+  if (wordsFind.length > 0){
+    return wordsFind.includes(word)
+  } 
+  return null
+}
 
 
 // Iteration #7: Count repetition
@@ -78,7 +157,21 @@ const wordsCount = [
   'matter'
 ];
 
-function howManyTimes() {}
+function howManyTimes(wordsCount,wordToCheck) {
+  let obj = {}
+  for (word of wordsCount){
+    if (word in obj){
+      obj[word] += 1
+    }else{
+      obj[word] = 1
+    }
+  }
+  if (obj[wordToCheck]){
+    return obj[wordToCheck]
+  }else{
+    return 0
+  }
+}
 
 
 
@@ -106,7 +199,31 @@ const matrix = [
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
 
-function greatestProduct() {}
+function greatestProduct(matrix) {
+  let maxProduct = 0
+  let product = 0
+  //iterate over the line
+  for (let i=0; i<matrix.length;i++){
+    //iterate over the columns
+    for (let j=0;j<matrix[i].length;j++){
+      //we'll check from right to left (horizontal)
+      if (j>=3){
+        product = matrix[i][j]*matrix[i][j-1]*matrix[i][j-2]*matrix[i][j-3]
+        if (product > maxProduct){
+          maxProduct = product
+        }
+      }
+      //we'll check from bottom to top (vertical)
+      if (i >=3){
+        product = matrix[i][j]*matrix[i-1][j]*matrix[i-2][j]*matrix[i-3][j]
+        if (product > maxProduct){
+          maxProduct = product
+        }
+      }
+    }
+  }
+  return maxProduct
+}
 
 
 
