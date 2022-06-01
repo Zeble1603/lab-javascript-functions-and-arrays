@@ -220,6 +220,13 @@ function greatestProduct(matrix) {
           maxProduct = product
         }
       }
+      //Diagonal 
+      if (j>=3 && i<=matrix.length-3){
+        product = matrix[i][j]*matrix[i-1][j-1]*matrix[i-2][j-2]*matrix[i-3][j-3]
+        if (product > maxProduct){
+          maxProduct = product
+        }
+      }
     }
   }
   return maxProduct
